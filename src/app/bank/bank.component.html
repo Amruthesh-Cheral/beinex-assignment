@@ -1,0 +1,41 @@
+<section>
+  <div class="bank-data-table" style="overflow-x: auto">
+    <div class="table-header">
+      <div class="heading">
+        <h2>Bank Details</h2>
+      </div>
+      <div class="search">
+        <input type="text" class="form-control mb-4" placeholder="Search" [(ngModel)]="query" id="listSearch"/>
+      </div>
+    </div>
+
+    <table class="bank">
+      <tr>
+        <th>Bank Id</th>
+        <th>Bank Name</th>
+        <th>Branch</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>District</th>
+        <th>Ifsc</th>
+        <th>State</th>
+      </tr>
+      <tbody>
+        <tr *ngFor=" let bank of bankDetails | searchFilter: query | paginate : { itemsPerPage: tableSize, currentPage: page, totalItems: count}">
+          <td>{{ bank.bank_id }}</td>
+          <td>{{ bank.bank_name }}</td>
+          <td>{{ bank.branch }}</td>
+          <td>{{ bank.address }}</td>
+          <td>{{ bank.city }}</td>
+          <td>{{ bank.district }}</td>
+          <td>{{ bank.ifsc }}</td>
+          <td>{{ bank.state }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="tabSize($event)"></pagination-controls>
+    </div>
+  </div>
+</section>
